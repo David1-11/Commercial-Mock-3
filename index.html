@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBEJU SENIOR HIGH SCHOOL - SS3 Mock</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="exam-container">
+        <header>
+            <div class="school-header">
+                <h1>IBEJU SENIOR HIGH SCHOOL</h1>
+                <p>Official SS3 Art & Commercial Mock</p>
+            </div>
+            <div id="timer-box">90:00</div>
+        </header>
+
+        <div id="quiz-body">
+            <div id="start-screen">
+                <div class="welcome-box">
+                    <h3 style="color: #333; font-family:'Segoe UI', sans-serif; font-weight: 800; font-size: 28px;">Candidate Login</h3>
+                    <p>Enter your full name to generate your unique question paper.</p>
+                </div>
+                <input type="text" id="student-name" placeholder="Surname First, Other Names" required>
+                <button id="begin-btn" onclick="startExam()">START EXAMINATION</button>
+            </div>
+
+            <div id="exam-screen" class="hidden">
+                <div class="subject-nav">
+                    <button id="tab-math" class="tab-btn active" onclick="switchSubject('math')">Math</button>
+                    <button id="tab-english" class="tab-btn" onclick="switchSubject('english')">English</button>
+                    <button id="tab-economics" class="tab-btn" onclick="switchSubject('economics')">Economics</button>
+                </div>
+
+                <div class="exam-meta">
+                    <span id="q-number">Question 1/40</span>
+                    <span id="subject-tag">MATH</span>
+                </div>
+
+                <div id="question-area">
+                    <p id="q-text">Loading question...</p>
+                    <div id="options-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exam-controls" class="hidden">
+            <button class="nav-btn" id="prev-btn" onclick="navigate(-1)">Previous</button>
+            <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next</button>
+            <button id="submit-btn" class="hidden" onclick="finishExam()">FINISH & SUBMIT</button>
+        </div>
+    </div>
+
+    <div id="result-modal" class="modal-overlay hidden">
+        <div class="result-card">
+            <h2>EXAM COMPLETED!</h2>
+            <p id="res-candidate-name"></p>
+            <hr>
+            <div class="score-breakdown">
+                <div class="score-box"><h4>MATH</h4><p id="res-math">0/40</p></div>
+                <div class="score-box"><h4>ENGLISH</h4><p id="res-english">0/30</p></div>
+                <div class="score-box"><h4>ECONOMICS</h4><p id="res-economics">0/30</p></div>
+            </div>
+            <div class="grand-total">
+                <h3>TOTAL SCORE</h3>
+                <h1 id="res-total">0/100</h1>
+                <p id="res-percent">0%</p>
+            </div>
+            <button id="wa-submit-btn" onclick="sendToWhatsApp()">SEND TO SCHOOL PORTAL (WHATSAPP)</button>
+        </div>
+    </div>
+
+    <div id="dev-modal" class="modal-overlay hidden" onclick="closeDevModal(event)">
+        <div class="dev-card" onclick="event.stopPropagation()">
+            <button class="close-dev" onclick="closeDevModal()">&times;</button>
+            
+            <img src="dav.jpg" alt="Owoaje David" class="dev-photo">
+            
+            <h2 class="dev-name">Owoaje David</h2>
+            <p class="dev-role">Lead Software Developer</p>
+            
+            <div class="dev-bio">
+                <p>Specializing in educational technology and custom web solutions.</p>
+            </div>
+            
+            <a href="https://wa.me/2347035646208" class="dev-contact-btn">
+                <i class="fab fa-whatsapp"></i> Contact via WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <div class="dev-footer">
+        <button class="dev-btn" onclick="openDevModal()">
+            <span>👨‍💻 About Developer</span>
+        </button>
+        <p class="dev-credit">Built for Ibeju Senior High School</p>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        function openDevModal() {
+            document.getElementById('dev-modal').classList.remove('hidden');
+        }
+        function closeDevModal(event) {
+            // Close if 'X' is clicked, or if the overlay outside the card is clicked
+            document.getElementById('dev-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
